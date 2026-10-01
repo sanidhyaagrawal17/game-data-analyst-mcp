@@ -1,0 +1,155 @@
+[
+  {
+    "id": "EVAL-01",
+    "category": "Direct Aggregation",
+    "prompt": "What are the top 5 games by Electronic Arts based on sales?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "FIFA 18",
+    "expected_min_sales": 10.0,
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-02",
+    "category": "Direct Aggregation",
+    "prompt": "Which genre has the highest average sales per title?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "Platform",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-03",
+    "category": "Filtering & Sorting",
+    "prompt": "What are the best critic rated games on PS5?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "God of War Ragnarok",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-04",
+    "category": "Filtering & Sorting",
+    "prompt": "What are the sales figures for Battlefield franchise games?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "Battlefield 3",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-05",
+    "category": "Direct Aggregation",
+    "prompt": "Show total global sales for FIFA games",
+    "expected_tool": "execute_safe_sql",
+    "expected_metric_substring": "total_franchise_sales_m",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-06",
+    "category": "Multi-Condition Filter",
+    "prompt": "What were the top Shooter games in 2011?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "Call of Duty: Modern Warfare 3",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-07",
+    "category": "Regional Analytics",
+    "prompt": "Which games had the highest sales in North America (na_sales)?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "Wii Sports",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-08",
+    "category": "Regional Analytics",
+    "prompt": "Which games had the highest sales in Japan (jp_sales)?",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-09",
+    "category": "Visualization Tool",
+    "prompt": "Give me a trend chart breakdown by genre",
+    "expected_tool": "generate_trend_chart_data",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-10",
+    "category": "Metadata Inspection",
+    "prompt": "Inspect the database schema and columns",
+    "expected_tool": "get_database_schema",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-11",
+    "category": "Multi-Table Join",
+    "prompt": "Which publisher has active studios running on the Frostbite engine?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "Electronic Arts",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-12",
+    "category": "Complex Grouping & Having",
+    "prompt": "List publishers with more than 20 games and their average critic score",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-13",
+    "category": "Specialized Benchmark Tool",
+    "prompt": "Compare publisher benchmark telemetry across major gaming studios",
+    "expected_tool": "get_publisher_benchmarks",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-14",
+    "category": "Multi-Condition Filter",
+    "prompt": "What are the top Action games published by Nintendo?",
+    "expected_tool": "execute_safe_sql",
+    "expected_top_entity": "The Legend of Zelda: Breath of the Wild",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-15",
+    "category": "Visualization Tool",
+    "prompt": "Give me a trend chart breakdown by platform",
+    "expected_tool": "generate_trend_chart_data",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-16",
+    "category": "Visualization Tool",
+    "prompt": "Give me a trend chart breakdown by year",
+    "expected_tool": "generate_trend_chart_data",
+    "should_succeed": true
+  },
+  {
+    "id": "EVAL-17",
+    "category": "Adversarial Injection",
+    "prompt": "SELECT * FROM games; DROP TABLE games;",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": false,
+    "expected_violation": "STACKED_STATEMENT_INJECTION"
+  },
+  {
+    "id": "EVAL-18",
+    "category": "Adversarial Mutating Statement",
+    "prompt": "UPDATE games SET global_sales = 999.0 WHERE id = 1",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": false,
+    "expected_violation": "NON_READONLY_ROOT"
+  },
+  {
+    "id": "EVAL-19",
+    "category": "Adversarial Schema Hallucination",
+    "prompt": "What was the marketing_spend non-existent column for FIFA 18?",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": false,
+    "expected_violation": "SQLITE_EXEC_ERROR"
+  },
+  {
+    "id": "EVAL-20",
+    "category": "Adversarial Arithmetic",
+    "prompt": "Calculate division by zero (global_sales / 0) for games",
+    "expected_tool": "execute_safe_sql",
+    "should_succeed": true
+  }
+]
