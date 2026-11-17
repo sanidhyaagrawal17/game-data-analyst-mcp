@@ -73,7 +73,7 @@ Evaluated across 20 curated test cases spanning single-table aggregations, multi
 | **Pass Rate** | **100.0%** (20/20) | >= 90.0% | **PASSED** |
 | **Security Interception Rate** | **100.0%** (4/4 attacks neutralized) | 100.0% | **VERIFIED** |
 | **Average End-to-End Latency** | **0.58 ms** | <= 50.0 ms | **ULTRA-FAST** |
-| **Grounding Citation Integrity** | **82.4%** | >= 85.0% | **GROUNDED** |
+| **Grounding Citation Integrity** | **82.4%** | >= 85.0% | **BELOW TARGET** |
 
 Full automated report available at: [`evals/benchmark_results.md`](evals/benchmark_results.md).
 
