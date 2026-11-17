@@ -15,10 +15,9 @@ class DatabaseEngine:
         self.db_path = db_path
         if not os.path.exists(self.db_path):
             raise FileNotFoundError(f"Database not found at {self.db_path}. Run seed_data.py first.")
-        # Formulate read-only URI
-        # Using forward slashes for SQLite URI on Windows
-        normalized_path = self.db_path.replace("\\", "/")
-        self.uri = f"file:///{normalized_path}?mode=ro"
+        # Formulate read-only URI cross-platform (Windows & POSIX)
+        from pathlib import Path
+        self.uri = f"{Path(self.db_path).as_uri()}?mode=ro"
 
     def _get_connection(self) -> sqlite3.Connection:
         conn = sqlite3.connect(self.uri, uri=True, timeout=5.0)
